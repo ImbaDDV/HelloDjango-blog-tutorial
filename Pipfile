@@ -1,21 +1,16 @@
 [[source]]
 name = "pypi"
-url = "https://pypi.org/simple"
+url = "https://pypi.douban.com/simple"
 verify_ssl = true
 
 [dev-packages]
+fabric = "*"
 
 [packages]
-django = "==2.2.3"
-django-sqlserver = "*"
-django-pytds = "*"
-pyodbc = "*"
-pypiwin32 = "*"
-django-pyodbc-azure = "==2.1.0.0"
-mysqlclient = "*"
+django = "*"
 markdown = "*"
-pygments = "*"
-django-markdown = "*"
+gunicorn = "*"
+faker = "*"
 
 [requires]
-python_version = "3.5"
+python_version = "3.6"
