@@ -1,12 +1,21 @@
-<div class="widget widget-recent-posts">
-  <h3 class="widget-title">最新文章</h3>
-  <ul>
-    {% for post in recent_post_list %}
-      <li>
-        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-      </li>
-    {% empty %}
-      暂无文章！
-    {% endfor %}
-  </ul>
+<div class="widget latest-posts">
+    <header>
+        <h3 class="h6">最新文章</h3>
+    </header>
+    <div class="blog-posts">
+        {% for post in recent_post_list %}
+            <a href="{{ post.get_absolute_url }}">
+                <div class="item d-flex align-items-center">
+                    <div class="title"><strong>{{ post.title }}</strong>
+                        <div class="d-flex align-items-center">
+                            <div class="views"><i class="icon-eye"></i> 500</div>
+                            <div class="comments"><i class="icon-comment"></i>12</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            暂无文章！
+        {% endfor %}
+    </div>
 </div>
