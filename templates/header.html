@@ -19,7 +19,7 @@
         <div class="container">
             <!-- Navbar Brand -->
             <div class="navbar-header d-flex align-items-center justify-content-between">
-                <!-- Navbar Brand --><a href="index.html" class="navbar-brand">Minsk Park</a>
+                <!-- Navbar Brand --><a href="{% url 'article:article_list' %}" class="navbar-brand">Minsk Park</a>
                 <!-- Toggle Button-->
                 <button type="button" data-toggle="collapse" data-target="#navbarcollapse"
                         aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation"
@@ -28,18 +28,34 @@
             <!-- Navbar Menu -->
             <div id="navbarcollapse" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="{% url 'blog:index' %}" class="nav-link active ">首页</a>
+                    <li class="nav-item"><a href="{% url 'article:article_list' %}" class="nav-link active ">首页</a>
                     </li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">文章</a>
+                    <li class="nav-item"><a href="{% url 'article:article_list' %}" class="nav-link">文章</a>
                     </li>
+                    <li class="nav-item"><a href="{% url 'article:article_create' %}" class="nav-link">写文章</a>
+                    </li>
+
                     <li class="nav-item"><a href="post.html" class="nav-link ">关于</a>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link ">联系</a>
                     </li>
                 </ul>
                 <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
-                <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a
-                        href="#">ES</a></ul>
+                <ul class="navbar-nav ml-auto"> {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'userprofile:user_logout' %}">退出登录</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'userprofile:user_login' %}">登录</a>
+                        </li>
+                    {% endif %}</ul>
             </div>
         </div>
     </nav>

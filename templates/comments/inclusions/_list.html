@@ -1,14 +1,23 @@
-<h3>评论列表，共 <span>{{ comment_list.count }}</span> 条评论</h3>
-<ul class="comment-list list-unstyled">
-  {% for comment in comment_list %}
-    <li class="comment-item">
-      <span class="nickname">{{ comment.name }}</span>
-      <time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time>
-      <div class="text">
-        {{ comment.text|linebreaks }}
-      </div>
-    </li>
-  {% empty %}
-    暂无评论
-  {% endfor %}
-</ul>
+<div class="post-comments">
+    <header>
+        <h3 class="h6">发表评论<span class="no-of-comments">{{ comment_list.count }}</span></h3>
+    </header>
+    {% for comment in comment_list %}
+        <div class="comment">
+            <div class="comment-header d-flex justify-content-between">
+                <div class="user d-flex align-items-center">
+                    {#                <div class="image"><img src="img/user.svg" alt="..."#}
+                    {#                                        class="img-fluid rounded-circle"></div>#}
+                    <div class="title"><strong>{{ comment.name }}</strong><span
+                            class="date">{{ comment.created_time }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-body">
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+        </div>
+    {% empty %}
+        暂无评论
+    {% endfor %}
+</div>

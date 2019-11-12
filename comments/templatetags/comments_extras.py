@@ -4,17 +4,17 @@ from ..forms import CommentForm
 register = template.Library()
 
 @register.inclusion_tag('comments/inclusions/_form.html', takes_context=True)
-def show_comment_form(context, post, form=None):
+def show_comment_form(context, article, form=None):
     if form is None:
         form = CommentForm()
     return {
         'form': form,
-        'post': post,
+        'article': article,
     }
 
 @register.inclusion_tag('comments/inclusions/_list.html', takes_context=True)
-def show_comments(context, post):
-    comment_list = post.comment_set.all() 
+def show_comments(context, article):
+    comment_list = article.comment_set.all()
     return { 
         'comment_list': comment_list,
     }

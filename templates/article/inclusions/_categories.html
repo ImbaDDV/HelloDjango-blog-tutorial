@@ -1,0 +1,10 @@
+<div class="widget categories">
+    <header>
+        <h6 class="widget-title">分类</h6>
+    </header>
+        {% for category in category_list %}
+            <div class="item d-flex justify-content-between"><a href="{% url 'article:category' category.pk %}">{{ category.name }}</a><span class="post-count">({{ category. }})</span></div>
+        {% empty %}
+            暂无分类！
+        {% endfor %}
+</div>

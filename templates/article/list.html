@@ -1,0 +1,40 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    {% for article in article_list %}
+        <div class="post col-xl-6">
+            <div class="post-thumbnail"><a href="{{ article.get_absolute_url }}"><img
+                    src="{% static 'article/img/article-post-1.jpeg' %}" alt="..." class="img-fluid"></a></div>
+            <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                    <div class="date meta-last">{{ article.created_time }}</div>
+                    <div class="category"><a href="#">{{ article.category.name }}</a></div>
+                </div>
+                <a href="{{ article.get_absolute_url }}">
+                    <h3 class="h4">{{ article.title }}</h3></a>
+                <p class="text-muted">
+                    {{ article.excerpt }}
+                </p>
+                <footer class="post-footer d-flex align-items-center">
+                    <a href="{{ article.get_absolute_url }}" class="author d-flex align-items-center flex-wrap">
+                        <div class="title"><span>{{ article.author }}</span></div>
+                    </a>
+                    <div class="date"><i class="icon-clock"></i> 2 months ago</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                </footer>
+            </div>
+        </div>
+    {% empty %}
+        <div class="no-post">暂时还没有发布的文章！</div>
+    {% endfor %}
+
+    <!-- 简单分页效果
+    <div class="pagination-simple">
+        <a href="#">上一页</a>
+        <span class="current">第 6 页 / 共 11 页</span>
+        <a href="#">下一页</a>
+    </div>
+    -->
+{% endblock main %}
